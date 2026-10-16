@@ -1,16 +1,1553 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="PANDA Phone&subwoofer - كل اكسسوارات الموبايل في مكان واحد. موبايلات، سماعات، شواحن، ساعات سمارت والمزيد بأسعار جامدة وتوصيل سريع." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
-    <title>PANDA Phone&subwoofer | متجر الموبايل والإكسسوارات</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="PANDA Phone&subwoofer - كل اكسسوارات الموبايل في مكان واحد. موبايلات، سماعات، شواحن، ساعات سمارت والمزيد بأسعار جامدة وتوصيل سريع." />
+<title>PANDA Phone&subwoofer | متجر الموبايل والإكسسوارات</title>
+<!-- خط Cairo من جوجل -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   PANDA Phone&subwoofer — كل الستايلات في مكان واحد
+   ثيم الباندا: أسود × أبيض × أخضر نيون
+============================================================ */
+:root{
+  --accent:#b6ff2e;          /* الأخضر النيون */
+  --accent-dark:#9dce1a;
+  --wa:#25D366;              /* أخضر واتساب */
+  --bg:#08080a;              /* خلفية الدارك مود */
+  --card:#141417;
+  --border:rgba(255,255,255,.1);
+  --text:#ffffff;
+  --muted:#a1a1aa;
+  --input-bg:rgba(255,255,255,.05);
+  --soft:rgba(255,255,255,.05);
+  --radius:22px;
+}
+body.light{
+  --bg:#f4f5f0;
+  --card:#ffffff;
+  --border:rgba(0,0,0,.1);
+  --text:#18181b;
+  --muted:#52525b;
+  --input-bg:rgba(0,0,0,.04);
+  --soft:rgba(0,0,0,.04);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Cairo",system-ui,sans-serif;
+  background:var(--bg);color:var(--text);
+  overflow-x:hidden;transition:background .3s,color .3s;
+}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font-family:inherit;color:inherit}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:#3f3f46;border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+.no-scroll::-webkit-scrollbar{display:none}
+.no-scroll{scrollbar-width:none}
+
+/* ---------- أنيميشن ---------- */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(50%)}}
+@keyframes popIn{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes slideUp{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(182,255,46,.5)}50%{box-shadow:0 0 0 12px rgba(182,255,46,0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.pop{animation:popIn .35s cubic-bezier(.34,1.56,.64,1)}
+.slide-up{animation:slideUp .4s ease-out both}
+
+/* ---------- الشريط المتحرك فوق ---------- */
+.ticker{background:var(--accent);color:#000;font-size:13px;font-weight:800;overflow:hidden;white-space:nowrap;padding:6px 0;position:relative;z-index:60}
+.ticker-inner{display:inline-flex;gap:32px;padding:0 16px;direction:ltr;animation:marquee 22s linear infinite}
+.ticker-inner span{direction:rtl}
+
+/* ---------- الهيدر ---------- */
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(0,0,0,.82);border-bottom:1px solid var(--border)}
+body.light header{background:rgba(255,255,255,.88)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 14px}
+.header-row{display:flex;align-items:center;gap:10px;padding:12px 0}
+.logo{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.logo-box{position:relative;width:46px;height:46px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 8px 20px rgba(182,255,46,.2);overflow:hidden;transition:transform .3s}
+.logo:hover .logo-box{transform:rotate(6deg)}
+.logo-box::after{content:"";position:absolute;bottom:0;left:0;right:0;height:6px;background:var(--accent)}
+.logo-name{font-weight:900;font-size:15px;direction:ltr;text-align:left;line-height:1.3}
+.logo-name b{color:var(--accent-dark)}
+.logo-sub{font-size:11px;font-weight:700;color:var(--muted)}
+.search-box{position:relative;flex:1;max-width:560px;margin:0 auto;display:none}
+.search-box input{width:100%;border-radius:16px;border:1px solid var(--border);background:var(--input-bg);padding:12px 44px 12px 16px;font-size:14px;outline:none;transition:border .2s,box-shadow .2s}
+.search-box input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(182,255,46,.25)}
+.search-box .sicon{position:absolute;right:16px;top:50%;transform:translateY(-50%);opacity:.5;pointer-events:none}
+.hdr-actions{display:flex;align-items:center;gap:7px;margin-right:auto}
+.icon-btn{width:40px;height:40px;border-radius:13px;border:1px solid var(--border);background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:18px;transition:transform .2s,border .2s}
+.icon-btn:hover{transform:scale(1.06);border-color:var(--accent)}
+.cart-btn{position:relative;width:40px;height:40px;border-radius:13px;background:var(--accent);color:#000;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 8px 20px rgba(182,255,46,.3);transition:transform .2s}
+.cart-btn:hover{transform:scale(1.06)}
+.cart-badge{position:absolute;top:-8px;left:-8px;min-width:22px;height:22px;padding:0 4px;border-radius:99px;background:#000;color:var(--accent);font-size:12px;font-weight:900;display:none;align-items:center;justify-content:center;border:2px solid var(--accent)}
+.wa-hdr{display:none;align-items:center;gap:7px;background:var(--wa);color:#fff;font-size:14px;font-weight:800;padding:10px 16px;border-radius:13px;box-shadow:0 8px 20px rgba(37,211,102,.25);transition:transform .2s}
+.wa-hdr:hover{transform:scale(1.04)}
+.mob-search{position:relative;padding-bottom:12px}
+.mob-search input{width:100%;border-radius:13px;border:1px solid var(--border);background:var(--input-bg);padding:10px 38px 10px 14px;font-size:14px;outline:none}
+.mob-search .sicon{position:absolute;right:14px;top:21px;transform:translateY(-50%);opacity:.5}
+nav.desktop-nav{display:none;align-items:center;gap:4px;padding-bottom:12px;font-size:14px;font-weight:800;color:var(--muted)}
+nav.desktop-nav button{padding:6px 12px;border-radius:10px;transition:background .2s,color .2s}
+nav.desktop-nav button:hover{background:var(--soft);color:var(--text)}
+.open-dot{margin-right:auto;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px}
+.open-dot i{width:8px;height:8px;border-radius:99px;background:#22c55e;animation:pulse 2s infinite}
+.mobile-menu{display:none;border-top:1px solid var(--border);padding:12px 14px;grid-template-columns:1fr 1fr;gap:8px;font-size:14px;font-weight:800;background:var(--card)}
+.mobile-menu.show{display:grid;animation:slideUp .3s ease-out}
+.mobile-menu button,.mobile-menu a{padding:12px;border-radius:13px;border:1px solid var(--border);background:var(--soft);text-align:right}
+.mobile-menu .wa-full{grid-column:1/-1;background:var(--wa);color:#fff;text-align:center;font-weight:900;border:none}
+
+/* ---------- الهيرو ---------- */
+.hero{position:relative;overflow:hidden;border-radius:26px;border:1px solid var(--border);box-shadow:0 30px 60px rgba(0,0,0,.35);margin-top:16px}
+.hero-bg{position:absolute;inset:0;transition:opacity .5s}
+.hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1px,transparent 1px);background-size:18px 18px;pointer-events:none}
+.hero-inner{position:relative;padding:26px 22px;display:flex;flex-direction:column;gap:20px;min-height:300px;z-index:2}
+.hero-emoji-big{position:absolute;left:-20px;top:20px;font-size:96px;opacity:.2;transform:rotate(12deg);animation:float 5s ease-in-out infinite;user-select:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#000;font-size:13px;font-weight:900;padding:7px 14px;border-radius:99px;box-shadow:0 8px 20px rgba(182,255,46,.3);width:fit-content;margin-bottom:14px}
+.hero h1{font-size:25px;font-weight:900;line-height:1.3;margin-bottom:10px;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.4)}
+.hero p{font-size:14px;font-weight:700;color:rgba(255,255,255,.92);margin-bottom:22px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn-shop{display:flex;align-items:center;gap:8px;background:#fff;color:#000;font-weight:900;padding:13px 24px;border-radius:17px;font-size:14px;box-shadow:0 14px 30px rgba(0,0,0,.3);transition:transform .2s}
+.btn-shop:hover{transform:scale(1.04)}
+.btn-shop i{background:var(--accent);width:26px;height:26px;border-radius:99px;display:flex;align-items:center;justify-content:center;font-style:normal}
+.btn-ask{display:flex;align-items:center;gap:8px;border:2px solid rgba(255,255,255,.4);color:#fff;font-weight:800;padding:11px 20px;border-radius:17px;font-size:14px;backdrop-filter:blur(4px);transition:background .2s}
+.btn-ask:hover{background:rgba(255,255,255,.12)}
+.hero-trust{display:flex;align-items:center;gap:14px;margin-top:18px;color:rgba(255,255,255,.92);font-size:12px;font-weight:800}
+.hero-visual{display:none}
+.hero-nav{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:0 20px 18px}
+.hero-dots{display:flex;gap:7px}
+.hero-dots button{height:8px;width:8px;border-radius:99px;background:rgba(255,255,255,.4);transition:all .3s}
+.hero-dots button.on{width:30px;background:var(--accent)}
+.hero-arrows{display:flex;gap:8px}
+.hero-arrows button{width:34px;height:34px;border-radius:99px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.hero-arrows button:hover{background:rgba(255,255,255,.28)}
+
+/* ---------- إحصائيات صغيرة ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.stat{border-radius:17px;border:1px solid var(--border);background:var(--card);padding:12px 6px;text-align:center}
+.stat b{display:block;font-size:15px;font-weight:900;color:var(--accent-dark);direction:ltr}
+.stat span{font-size:11px;font-weight:700;color:var(--muted)}
+
+/* ---------- عناوين الأقسام ---------- */
+section{max-width:1200px;margin:0 auto;padding:40px 14px 0;scroll-margin-top:110px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:18px}
+.sec-kicker{font-size:12px;font-weight:900;color:var(--accent-dark);margin-bottom:4px}
+.sec-title{font-size:22px;font-weight:900}
+.sec-sub{font-size:12px;font-weight:700;color:var(--muted);margin-top:4px}
+.sec-link{font-size:12px;font-weight:800;padding:9px 14px;border-radius:13px;border:1px solid var(--border);transition:border .2s}
+.sec-link:hover{border-color:var(--accent)}
+
+/* ---------- التصنيفات ---------- */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.cat{position:relative;overflow:hidden;border-radius:18px;border:1px solid var(--border);background:var(--card);padding:12px;text-align:right;transition:transform .25s,border .25s,box-shadow .25s}
+.cat:hover{transform:translateY(-4px);border-color:rgba(182,255,46,.6);box-shadow:0 18px 36px rgba(0,0,0,.3)}
+.cat.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(182,255,46,.45),0 10px 26px rgba(182,255,46,.15)}
+.cat .tint{position:absolute;inset:0;opacity:.14;transition:opacity .25s}
+.cat:hover .tint{opacity:.26}
+.cat .check{display:none;position:absolute;top:8px;left:8px;width:22px;height:22px;border-radius:99px;background:var(--accent);color:#000;font-size:13px;font-weight:900;align-items:center;justify-content:center;z-index:2}
+.cat.active .check{display:flex}
+.cat .ic{position:relative;width:46px;height:46px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 8px 20px rgba(0,0,0,.3);margin-bottom:8px;transition:transform .25s}
+.cat:hover .ic{transform:scale(1.1)}
+.cat b{position:relative;display:block;font-size:12px;font-weight:900;line-height:1.4;min-height:34px}
+.cat span{position:relative;font-size:10.5px;font-weight:700;color:var(--muted)}
+.cat-note{border-radius:18px;border:2px dashed rgba(182,255,46,.45);background:rgba(182,255,46,.06);padding:12px;display:flex;flex-direction:column;justify-content:center}
+.cat-note .e{font-size:26px;margin-bottom:4px}
+.cat-note b{font-size:12px;font-weight:900}
+.cat-note a{margin-top:6px;font-size:11px;font-weight:900;color:var(--accent-dark);text-decoration:underline}
+
+/* ---------- البراندات ---------- */
+.brands-card{border-radius:22px;border:1px solid var(--border);background:var(--card);padding:16px}
+.brands-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.brands-head h3{font-size:16px;font-weight:900}
+.brand-clear{display:none;font-size:11px;font-weight:800;padding:6px 12px;border-radius:99px;background:rgba(239,68,68,.1);color:#ef4444;border:1px solid rgba(239,68,68,.3)}
+.brand-clear.show{display:inline-flex;gap:4px;align-items:center}
+.brands-row{display:flex;gap:9px;overflow-x:auto;padding-bottom:4px}
+.brand-chip{flex-shrink:0;padding:10px 22px;border-radius:16px;font-weight:900;font-size:14px;border:1px solid var(--border);background:var(--soft);direction:ltr;transition:all .2s}
+.brand-chip:hover{transform:translateY(-2px);border-color:var(--accent);color:var(--accent-dark)}
+.brand-chip.on{background:var(--accent);color:#000;border-color:var(--accent);box-shadow:0 8px 20px rgba(182,255,46,.3)}
+.brand-chip.on:hover{color:#000}
+
+/* ---------- عروض الفلاش ---------- */
+.flash-wrap{position:relative;overflow:hidden;border-radius:26px;background:linear-gradient(225deg,#1a0500,#2b0d00 50%,#000);border:1px solid rgba(249,115,22,.25);padding:20px 16px}
+.flash-glow1{position:absolute;top:0;left:25%;width:250px;height:250px;background:rgba(249,115,22,.2);filter:blur(80px);border-radius:99px}
+.flash-glow2{position:absolute;bottom:0;right:25%;width:250px;height:250px;background:rgba(239,68,68,.2);filter:blur(80px);border-radius:99px}
+.flash-head{position:relative;display:flex;flex-direction:column;gap:14px;margin-bottom:18px}
+.flash-title{display:flex;align-items:center;gap:12px}
+.flash-title .fe{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,#fb923c,#dc2626);display:flex;align-items:center;justify-content:center;font-size:24px;animation:glow 2s infinite}
+.flash-title h2{color:#fff;font-size:20px;font-weight:900}
+.flash-title p{color:rgba(254,215,170,.7);font-size:12px;font-weight:700}
+.countdown{display:flex;align-items:center;gap:8px;direction:ltr}
+.cd-box{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:16px;width:62px;padding:8px 0;text-align:center;backdrop-filter:blur(4px)}
+.cd-box b{display:block;color:#fff;font-size:21px;font-weight:900;font-variant-numeric:tabular-nums}
+.cd-box span{color:rgba(254,215,170,.7);font-size:10px;font-weight:800}
+.cd-sep{color:#fb923c;font-weight:900;font-size:20px}
+.flash-grid{position:relative;display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.fcard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:11px;transition:border .2s}
+.fcard:hover{border-color:rgba(251,146,60,.5)}
+.fcard .fimg{position:relative;height:104px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:46px;overflow:hidden;margin-bottom:10px}
+.fcard .fimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fcard .disc{position:absolute;top:7px;right:7px;background:#ef4444;color:#fff;font-size:10px;font-weight:900;padding:4px 8px;border-radius:99px}
+.fcard .fname{color:#fff;font-weight:700;font-size:12px;line-height:1.5;min-height:36px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fcard .fprices{display:flex;align-items:center;gap:8px;margin-top:5px}
+.fcard .fnew{color:var(--accent);font-weight:900;font-size:14px}
+.fcard .fold{color:#71717a;text-decoration:line-through;font-size:11px}
+.fcard button{margin-top:9px;width:100%;background:var(--accent);color:#000;font-size:12px;font-weight:900;padding:10px 0;border-radius:12px;transition:background .2s,transform .1s}
+.fcard button:hover{background:#c8ff5e}
+.fcard button:active{transform:scale(.95)}
+
+/* ---------- الفلاتر ---------- */
+.filter-toggle{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:900;padding:10px 16px;border-radius:13px;border:1px solid var(--border);background:var(--card);transition:all .2s}
+.filter-toggle.on{background:var(--accent);color:#000;border-color:var(--accent)}
+.filter-panel{display:none;border-radius:22px;border:1px solid var(--border);background:var(--card);padding:16px;margin-bottom:18px;grid-template-columns:1fr;gap:14px}
+.filter-panel.show{display:grid;animation:slideUp .35s ease-out}
+.f-field label{display:flex;justify-content:space-between;font-size:12px;font-weight:900;margin-bottom:7px}
+.f-field label b{color:var(--accent-dark)}
+.f-field select{width:100%;border-radius:13px;border:1px solid var(--border);background:var(--input-bg);padding:11px;font-size:13px;font-weight:700;outline:none}
+body:not(.light) .f-field select option{background:#141417;color:#fff}
+.f-field input[type=range]{width:100%;accent-color:var(--accent-dark);height:6px;margin-top:10px;direction:ltr}
+.range-labels{display:flex;justify-content:space-between;font-size:10px;font-weight:800;color:var(--muted);margin-top:4px}
+.sort-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.sort-row button{padding:10px 0;border-radius:13px;font-size:12px;font-weight:900;border:1px solid var(--border);background:var(--soft);transition:all .2s}
+.sort-row button.on{background:var(--accent);color:#000;border-color:var(--accent)}
+.clear-filters{display:none;font-size:12px;font-weight:900;padding:10px;border-radius:13px;background:rgba(239,68,68,.1);color:#ef4444;border:1px solid rgba(239,68,68,.3)}
+.clear-filters.show{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{font-size:11px;font-weight:900;padding:6px 12px;border-radius:99px;display:inline-flex;align-items:center;gap:6px}
+.chip .x{cursor:pointer;opacity:.7}
+.chip.c-cat{background:rgba(182,255,46,.15);color:var(--accent-dark);border:1px solid rgba(182,255,46,.3)}
+.chip.c-brand{background:var(--soft);border:1px solid var(--border);direction:ltr}
+.chip.c-search{background:rgba(59,130,246,.15);color:#60a5fa;border:1px solid rgba(59,130,246,.3)}
+
+/* ---------- كروت المنتجات ---------- */
+.grid-products{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.pcard{display:flex;flex-direction:column;border-radius:20px;border:1px solid var(--border);background:var(--card);overflow:hidden;transition:transform .25s,border .25s,box-shadow .25s}
+.pcard:hover{transform:translateY(-6px);border-color:rgba(182,255,46,.5);box-shadow:0 22px 44px rgba(0,0,0,.35)}
+.pimg{position:relative;height:148px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pimg .dots-bg{position:absolute;inset:0;opacity:.2;background-image:radial-gradient(rgba(255,255,255,.5) 1px,transparent 1px);background-size:16px 16px}
+.pimg .pe{font-size:58px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.4));transition:transform .3s;position:relative}
+.pcard:hover .pe{transform:scale(1.12) rotate(3deg)}
+.pimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.pcard:hover .pimg img{transform:scale(1.06)}
+.pimg .panda-mark{position:absolute;bottom:7px;left:7px;font-size:18px;opacity:.4}
+.ptags{position:absolute;top:7px;right:7px;display:flex;flex-direction:column;gap:4px;align-items:flex-end}
+.ptag{font-size:10px;font-weight:900;padding:4px 9px;border-radius:99px;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.ptag.t-new{background:var(--accent);color:#000}
+.ptag.t-sale{background:#ef4444;color:#fff}
+.ptag.t-hot{background:#000;color:var(--accent);border:1px solid rgba(182,255,46,.5)}
+.ptag.t-ex{background:#9333ea;color:#fff}
+.pdisc{position:absolute;top:7px;left:7px;background:rgba(0,0,0,.8);color:var(--accent);font-size:10px;font-weight:900;padding:4px 8px;border-radius:99px;border:1px solid rgba(182,255,46,.4);direction:ltr}
+.pbrand{position:absolute;bottom:7px;right:7px;background:rgba(0,0,0,.7);color:#fff;font-size:10px;font-weight:900;padding:4px 9px;border-radius:99px;border:1px solid rgba(255,255,255,.2);direction:ltr}
+.pbody{display:flex;flex-direction:column;flex:1;padding:11px}
+.pcat{font-size:10px;font-weight:800;color:var(--muted);margin-bottom:3px}
+.pname{font-size:13px;font-weight:900;line-height:1.45;min-height:38px;margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pstars{display:flex;align-items:center;gap:4px;font-size:11px;margin-bottom:7px}
+.pstars .st{color:#facc15;letter-spacing:1px}
+.pstars span{font-size:10px;font-weight:800;color:var(--muted)}
+.pprices{display:flex;align-items:baseline;gap:7px;margin-bottom:10px}
+.pnew{font-size:16px;font-weight:900;color:var(--accent-dark)}
+.pold{font-size:11px;font-weight:700;color:var(--muted);text-decoration:line-through}
+.pacts{margin-top:auto;display:grid;grid-template-columns:1fr 40px;gap:6px}
+.btn-add{background:var(--accent);color:#000;font-size:12px;font-weight:900;padding:10px 0;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:5px;box-shadow:0 6px 16px rgba(182,255,46,.2);transition:background .2s,transform .1s}
+.btn-add:hover{background:#c8ff60}
+.btn-add:active{transform:scale(.95)}
+.btn-wa-sq{border-radius:12px;background:var(--wa);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 6px 16px rgba(37,211,102,.25);transition:transform .2s}
+.btn-wa-sq:hover{transform:scale(1.07)}
+.btn-wa-line{margin-top:6px;font-size:11px;font-weight:800;padding:7px 0;border-radius:10px;border:1px dashed var(--border);color:var(--muted);transition:all .2s;width:100%}
+.btn-wa-line:hover{color:var(--accent-dark);border-color:rgba(182,255,46,.4)}
+.empty{border-radius:22px;border:1px solid var(--border);background:var(--card);padding:40px 16px;text-align:center}
+.empty .e{font-size:54px;margin-bottom:10px}
+.empty b{display:block;font-size:17px;font-weight:900;margin-bottom:4px}
+.empty p{font-size:13px;font-weight:700;color:var(--muted)}
+.empty-btns{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.empty-btns button,.empty-btns a{font-size:13px;font-weight:900;padding:10px 20px;border-radius:13px}
+.empty-btns .b1{background:var(--accent);color:#000}
+.empty-btns .b2{background:var(--wa);color:#fff}
+
+/* ---------- ليه إحنا ---------- */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.why{border-radius:20px;border:1px solid var(--border);background:var(--card);padding:18px 12px;text-align:center;transition:transform .25s}
+.why:hover{transform:translateY(-4px)}
+.why .we{width:54px;height:54px;margin:0 auto 10px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:27px;box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.why b{display:block;font-size:13px;font-weight:900;margin-bottom:4px}
+.why p{font-size:11px;font-weight:700;color:var(--muted);line-height:1.7}
+.center-head{text-align:center;margin-bottom:20px}
+.center-head h2{font-size:22px;font-weight:900}
+.center-head p{font-size:12px;font-weight:700;color:var(--muted);margin-top:4px}
+
+/* ---------- آراء العملاء ---------- */
+.rev-viewport{overflow:hidden}
+.rev-track{display:flex;transition:transform .5s ease}
+.rev-slide{width:100%;flex-shrink:0;padding:0 2px}
+.rev-card{position:relative;overflow:hidden;border-radius:22px;border:1px solid var(--border);background:var(--card);padding:20px}
+.rev-card .q{position:absolute;top:-10px;right:10px;font-size:80px;opacity:.08;user-select:none}
+.rev-top{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+.rev-ava{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,#3f3f46,#000);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:24px}
+.rev-name{font-size:13px;font-weight:900}
+.rev-name i{font-style:normal;color:var(--accent-dark)}
+.rev-area{font-size:11px;font-weight:700;color:var(--muted)}
+.rev-stars{margin-right:auto;color:#facc15;font-size:13px;letter-spacing:1px}
+.rev-text{font-size:14px;font-weight:700;line-height:1.9}
+.rev-nav{display:flex;gap:8px}
+.rev-nav button{width:34px;height:34px;border-radius:99px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;transition:border .2s}
+.rev-nav button:hover{border-color:var(--accent)}
+.rev-dots{display:flex;justify-content:center;gap:7px;margin-top:12px}
+.rev-dots button{height:8px;width:8px;border-radius:99px;background:var(--border);transition:all .3s}
+.rev-dots button.on{width:30px;background:var(--accent)}
+
+/* ---------- فورم الإدارة ---------- */
+.admin-card{border-radius:26px;border:1px solid var(--border);background:var(--card);overflow:hidden}
+.admin-head{background:linear-gradient(270deg,var(--accent),#7ddf00);padding:20px 16px;color:#000}
+.admin-head h2{font-size:18px;font-weight:900;display:flex;align-items:center;gap:8px}
+.admin-head h2 .pill{font-size:11px;font-weight:800;background:#000;color:var(--accent);padding:4px 11px;border-radius:99px}
+.admin-head p{font-size:12px;font-weight:800;color:rgba(0,0,0,.7);margin-top:4px}
+.admin-form{padding:16px;display:grid;grid-template-columns:1fr;gap:13px}
+.a-field label{display:block;font-size:12px;font-weight:900;margin-bottom:6px}
+.a-field input,.a-field select,.a-field textarea{width:100%;border-radius:13px;border:1px solid var(--border);background:var(--input-bg);padding:11px;font-size:13px;font-weight:700;outline:none;transition:border .2s,box-shadow .2s;resize:none}
+.a-field input:focus,.a-field textarea:focus,.a-field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(182,255,46,.25)}
+body:not(.light) .a-field select option{background:#141417;color:#fff}
+.a-field input::placeholder,.a-field textarea::placeholder{color:var(--muted);opacity:.7}
+.a-field .ltr{direction:ltr;text-align:left}
+.brand-pick{display:flex;flex-wrap:wrap;gap:6px}
+.brand-pick button{padding:8px 15px;border-radius:13px;font-size:12px;font-weight:900;border:1px solid var(--border);background:var(--soft);direction:ltr;transition:all .2s}
+.brand-pick button.on{background:#000;color:var(--accent);border-color:#000}
+body.light .brand-pick button.on{box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.btn-publish{background:#000;color:var(--accent);font-weight:900;font-size:14px;padding:14px 0;border-radius:17px;box-shadow:0 14px 30px rgba(0,0,0,.3);transition:transform .2s}
+.btn-publish:hover{transform:scale(1.01)}
+.btn-publish:active{transform:scale(.97)}
+
+/* ---------- التواصل ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr;gap:9px}
+.ccard{display:flex;align-items:center;gap:14px;border-radius:20px;border:1px solid var(--border);background:var(--card);padding:16px;transition:transform .2s}
+.ccard:hover{transform:scale(1.02)}
+.ccard.wa-big{background:var(--wa);color:#fff;border:none;box-shadow:0 14px 30px rgba(37,211,102,.25)}
+.ccard .ci{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:25px;flex-shrink:0}
+.ccard.wa-big .ci{background:rgba(255,255,255,.2)}
+.ccard b{display:block;font-size:14px;font-weight:900}
+.ccard span{font-size:12px;font-weight:700;opacity:.75}
+
+/* ---------- الفوتر ---------- */
+footer{margin-top:44px;border-top:1px solid var(--border);background:#000}
+body.light footer{background:#fff}
+.foot-grid{max-width:1200px;margin:0 auto;padding:34px 16px;display:grid;grid-template-columns:1fr;gap:28px}
+.foot-logo{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-weight:900;direction:ltr;justify-content:flex-end}
+.foot-logo .lb{width:38px;height:38px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:22px}
+.foot-logo b{color:var(--accent-dark)}
+.foot-desc{font-size:12px;font-weight:700;color:var(--muted);line-height:1.9}
+.foot-social{display:flex;gap:8px;margin-top:14px}
+.foot-social a{width:36px;height:36px;border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .2s}
+.foot-social a:hover{border-color:var(--accent);color:var(--accent-dark)}
+.foot-col h4{font-size:13px;font-weight:900;margin-bottom:12px}
+.foot-col ul{list-style:none}
+.foot-col li{margin-bottom:9px}
+.foot-col button,.foot-col li{font-size:12px;font-weight:700;color:var(--muted);transition:color .2s;text-align:right}
+.foot-col button:hover{color:var(--accent-dark)}
+.foot-wa{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#000;font-size:12px;font-weight:900;padding:10px 16px;border-radius:13px;margin-top:12px;transition:transform .2s}
+.foot-wa:hover{transform:scale(1.05)}
+.copy{border-top:1px solid var(--border);padding:16px;text-align:center;font-size:11px;font-weight:800;color:#71717a}
+
+/* ---------- واتساب العايم ---------- */
+.fab-wa{position:fixed;bottom:88px;left:16px;z-index:55;width:56px;height:56px;border-radius:99px;background:var(--wa);color:#fff;display:flex;align-items:center;justify-content:center;font-size:27px;box-shadow:0 18px 40px rgba(37,211,102,.4);animation:glow 2s infinite;transition:transform .2s}
+.fab-wa:hover{transform:scale(1.1)}
+.fab-wa:active{transform:scale(.95)}
+
+/* ---------- شريط الموبايل السفلي ---------- */
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;z-index:55;border-top:1px solid var(--border);backdrop-filter:blur(16px);background:rgba(0,0,0,.9);display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:8px}
+body.light .bottom-bar{background:rgba(255,255,255,.92)}
+.bottom-bar button,.bottom-bar a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;border-radius:13px;font-size:11px;font-weight:900;position:relative}
+.bottom-bar .bb-wa{background:var(--wa);color:#fff}
+.bottom-bar .bicon{font-size:19px}
+.bb-badge{position:absolute;top:0;right:calc(50% - 26px);background:var(--accent);color:#000;font-size:10px;width:19px;height:19px;border-radius:99px;display:none;align-items:center;justify-content:center;font-weight:900}
+
+/* ---------- درج السلة ---------- */
+.cart-overlay{position:fixed;inset:0;z-index:70;display:none}
+.cart-overlay.show{display:block}
+.cart-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
+.cart-drawer{position:absolute;top:0;bottom:0;left:0;width:100%;max-width:420px;display:flex;flex-direction:column;background:var(--card);box-shadow:20px 0 60px rgba(0,0,0,.5);animation:slideUp .3s ease-out}
+.cart-head{display:flex;align-items:center;gap:10px;padding:16px;border-bottom:1px solid var(--border)}
+.cart-head .ch-ic{width:40px;height:40px;border-radius:13px;background:var(--accent);color:#000;display:flex;align-items:center;justify-content:center;font-size:19px}
+.cart-head b{font-size:15px;font-weight:900;display:block}
+.cart-head span{font-size:11px;font-weight:800;color:var(--muted)}
+.cart-close{margin-right:auto;width:36px;height:36px;border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px}
+.cart-body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.cart-empty{text-align:center;padding:48px 10px}
+.cart-empty .e{font-size:58px;margin-bottom:10px}
+.cart-empty b{display:block;font-size:16px;font-weight:900}
+.cart-empty p{font-size:13px;font-weight:700;color:var(--muted);margin-top:4px}
+.cart-empty button{margin-top:16px;background:var(--accent);color:#000;font-weight:900;font-size:13px;padding:11px 24px;border-radius:17px}
+.citem{display:flex;gap:10px;border-radius:17px;border:1px solid var(--border);background:var(--soft);padding:10px}
+.citem .cimg{position:relative;width:60px;height:60px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:29px;flex-shrink:0;overflow:hidden}
+.citem .cimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.citem .cinfo{flex:1;min-width:0}
+.citem .cname{font-size:12px;font-weight:800;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.citem .cprice{color:var(--accent-dark);font-weight:900;font-size:13px;margin-top:2px}
+.citem .crow{display:flex;align-items:center;gap:8px;margin-top:7px}
+.qty-ctrl{display:flex;align-items:center;gap:5px;border-radius:99px;border:1px solid var(--border);padding:3px}
+.qty-ctrl button{width:25px;height:25px;border-radius:99px;background:var(--soft);font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.qty-ctrl button:hover{background:var(--accent);color:#000}
+.qty-ctrl b{font-size:13px;font-weight:900;width:22px;text-align:center}
+.cdel{color:#ef4444;padding:5px 7px;border-radius:9px;font-size:14px;transition:background .2s}
+.cdel:hover{background:rgba(239,68,68,.1)}
+.csub{margin-right:auto;font-size:11px;font-weight:900;color:var(--muted)}
+.cart-foot{border-top:1px solid var(--border);background:var(--soft);padding:14px;display:none;flex-direction:column;gap:10px}
+.cart-foot.show{display:flex}
+.cart-foot input{border-radius:13px;border:1px solid var(--border);background:var(--input-bg);padding:10px;font-size:13px;font-weight:700;outline:none;width:100%}
+.cart-foot input:focus{border-color:var(--accent)}
+.buyer-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.total-row{display:flex;align-items:center;justify-content:space-between;font-weight:900;font-size:14px}
+.total-row b{color:var(--accent-dark);font-size:20px}
+.ship-note{font-size:10.5px;font-weight:800;color:var(--muted)}
+.btn-checkout{width:100%;background:var(--wa);color:#fff;font-weight:900;font-size:14px;padding:13px 0;border-radius:17px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 10px 26px rgba(37,211,102,.25);transition:background .2s,transform .1s}
+.btn-checkout:hover{background:#1eb856}
+.btn-checkout:active{transform:scale(.98)}
+.btn-clear-cart{width:100%;font-size:11px;font-weight:800;color:#ef4444;padding:4px 0}
+
+/* ---------- التوست ---------- */
+.toast{position:fixed;bottom:150px;right:50%;transform:translateX(50%);z-index:80;display:none;max-width:92vw}
+.toast.show{display:block;animation:popIn .35s cubic-bezier(.34,1.56,.64,1)}
+.toast-inner{background:#000;color:#fff;border:1px solid rgba(182,255,46,.4);padding:12px 18px;border-radius:17px;box-shadow:0 20px 50px rgba(0,0,0,.5);display:flex;align-items:center;gap:9px;font-size:13px;font-weight:800}
+.toast-inner .ti{width:30px;height:30px;border-radius:99px;background:var(--accent);color:#000;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+
+/* ============================================================
+   الشاشات الكبيرة (تابلت / ديسكتوب)
+============================================================ */
+@media(min-width:640px){
+  .wrap{padding:0 24px}
+  section{padding:48px 24px 0}
+  .logo-name{font-size:17px}.logo-sub{font-size:12px}
+  .wa-hdr{display:flex}
+  .stats{gap:14px}.stat b{font-size:23px}.stat span{font-size:13px}
+  .hero{border-radius:32px}
+  .hero-inner{padding:40px;flex-direction:row;align-items:center;min-height:340px}
+  .hero h1{font-size:40px}.hero p{font-size:17px}
+  .hero-emoji-big{font-size:150px}
+  .hero-trust{font-size:13px}
+  .cats{grid-template-columns:repeat(4,1fr);gap:14px}
+  .cat{border-radius:22px;padding:18px}
+  .cat .ic{width:54px;height:54px;font-size:28px;border-radius:17px}
+  .cat b{font-size:14px;min-height:42px}.cat span{font-size:11.5px}
+  .sec-title{font-size:28px}.sec-sub{font-size:13px}
+  .flash-wrap{padding:30px}
+  .flash-head{flex-direction:row;align-items:center;justify-content:space-between}
+  .flash-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .fcard .fimg{height:150px;font-size:62px}
+  .fcard .fname{font-size:13px}
+  .grid-products{grid-template-columns:repeat(3,1fr);gap:16px}
+  .pimg{height:195px}.pimg .pe{font-size:80px}
+  .pname{font-size:15px;min-height:46px}
+  .pnew{font-size:19px}
+  .filter-panel{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:repeat(4,1fr);gap:16px}
+  .why .we{width:60px;height:60px;font-size:30px}
+  .why b{font-size:16px}.why p{font-size:12.5px}
+  .center-head h2{font-size:28px}.center-head p{font-size:13px}
+  .rev-card{padding:30px}.rev-text{font-size:17px}
+  .rev-ava{width:54px;height:54px;font-size:27px}
+  .contact-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .admin-form{padding:28px;grid-template-columns:1fr 1fr;gap:16px}
+  .a-span2{grid-column:1/-1}
+  .admin-head{padding:28px}
+  .admin-head h2{font-size:23px}.admin-head p{font-size:13px}
+  .foot-grid{grid-template-columns:1.3fr 1fr 1fr 1fr;gap:30px}
+  .foot-logo{justify-content:flex-start}
+  .cd-box b{font-size:24px}
+  .fab-wa{bottom:24px;left:24px;width:62px;height:62px;font-size:30px}
+}
+@media(min-width:900px){
+  .search-box{display:block}
+  .mob-search{display:none}
+  nav.desktop-nav{display:flex}
+  #menuBtn{display:none}
+  .mobile-menu{display:none!important}
+  .bottom-bar{display:none}
+  .flash-grid{grid-template-columns:repeat(4,1fr)}
+  .grid-products{grid-template-columns:repeat(4,1fr)}
+  .filter-panel{grid-template-columns:repeat(4,1fr)}
+  .cats{grid-template-columns:repeat(6,1fr)}
+  .contact-grid{grid-template-columns:repeat(3,1fr)}
+  .hero-visual{display:flex;width:270px;height:270px;flex-shrink:0;position:relative;align-items:center;justify-content:center}
+  .hero-visual .circle{position:absolute;inset:0;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(4px)}
+  .hero-visual .big-e{font-size:120px;animation:float 5s ease-in-out infinite;filter:drop-shadow(0 20px 30px rgba(0,0,0,.4));position:relative}
+  .hero-visual .tag{position:absolute;bottom:-4px;background:rgba(0,0,0,.7);color:#fff;font-size:12px;font-weight:800;padding:8px 16px;border-radius:99px;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(4px)}
+  .toast{right:24px;transform:none;bottom:110px}
+}
+</style>
+</head>
+<body>
+
+<!-- ======== الشريط المتحرك ======== -->
+<div class="ticker">
+  <div class="ticker-inner" id="tickerInner"></div>
+</div>
+
+<!-- ======== الهيدر الثابت ======== -->
+<header>
+  <div class="wrap">
+    <div class="header-row">
+      <!-- اللوجو -->
+      <a href="#top" class="logo">
+        <span class="logo-box">🐼</span>
+        <span>
+          <span class="logo-name">PANDA <b>Phone</b>&amp;<b>subwoofer</b></span>
+          <span class="logo-sub">كل حاجة للموبايل.. في مكان واحد 🐾</span>
+        </span>
+      </a>
+      <!-- سيرش الديسكتوب -->
+      <div class="search-box">
+        <span class="sicon">🔍</span>
+        <input id="searchInput" type="text" placeholder="دوّر على موبايل، سماعة، شاحن، جراب..." />
+      </div>
+      <!-- أزرار الهيدر -->
+      <div class="hdr-actions">
+        <button class="icon-btn" id="themeBtn" title="تبديل الوضع">☀️</button>
+        <button class="cart-btn" id="cartBtn" title="السلة">🛒
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <a class="wa-hdr" id="waHdr" target="_blank" rel="noreferrer">💬 واتساب</a>
+        <button class="icon-btn" id="menuBtn" title="القائمة">☰</button>
+      </div>
+    </div>
+    <!-- سيرش الموبايل -->
+    <div class="mob-search">
+      <span class="sicon">🔍</span>
+      <input id="searchInputMob" type="text" placeholder="دوّر على أي حاجة للموبايل..." />
+    </div>
+    <!-- لينكات الديسكتوب -->
+    <nav class="desktop-nav">
+      <button onclick="goTo('top')">الرئيسية</button>
+      <button onclick="goTo('cats')">التصنيفات</button>
+      <button onclick="goTo('ads')">الإعلانات</button>
+      <button onclick="goTo('flash')">العروض ⚡</button>
+      <button onclick="goTo('reviews')">آراء العملاء</button>
+      <button onclick="goTo('contact')">تواصل معانا</button>
+      <span class="open-dot"><i></i> فاتحين يومياً من 11ص لـ 11م</span>
+    </nav>
+  </div>
+  <!-- منيو الموبايل -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button onclick="goTo('top')">🏠 الرئيسية</button>
+    <button onclick="goTo('cats')">🗂️ التصنيفات</button>
+    <button onclick="goTo('ads')">📢 الإعلانات</button>
+    <button onclick="goTo('flash')">⚡ العروض</button>
+    <button onclick="goTo('reviews')">⭐ آراء العملاء</button>
+    <button onclick="goTo('contact')">📞 تواصل</button>
+    <a class="wa-full" id="waMenu" target="_blank" rel="noreferrer">💬 كلمنا واتساب دلوقتي</a>
+  </div>
+</header>
+
+<span id="top"></span>
+
+<!-- ======== الهيرو (سلايدر العروض) ======== -->
+<section style="padding-top:0">
+  <div class="hero" id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-emoji-big" id="heroEmojiBig">⚡</div>
+    <div class="hero-inner">
+      <div style="flex:1;max-width:560px;position:relative">
+        <span class="hero-badge" id="heroBadge">✨ خصم حتى 40%</span>
+        <h1 id="heroTitle"></h1>
+        <p id="heroSub"></p>
+        <div class="hero-btns">
+          <button class="btn-shop" onclick="goTo('ads')"><span id="heroCta">تسوق الآن</span> <i>◀</i></button>
+          <a class="btn-ask" id="heroAsk" target="_blank" rel="noreferrer">💬 اسأل واتساب</a>
+        </div>
+        <div class="hero-trust">
+          <span>⭐ 4.9 (1200+ تقييم)</span>
+          <span>|</span>
+          <span>💵 كاش عند الاستلام</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <span class="circle"></span>
+        <span class="big-e" id="heroVisualE">⚡</span>
+        <span class="tag">🐼 PANDA الأصلي 100%</span>
+      </div>
+    </div>
+    <div class="hero-nav">
+      <div class="hero-dots" id="heroDots"></div>
+      <div class="hero-arrows">
+        <button onclick="heroNext()">‹</button>
+        <button onclick="heroPrev()">›</button>
+      </div>
+    </div>
+  </div>
+  <!-- إحصائيات سريعة -->
+  <div class="stats">
+    <div class="stat"><b>+2500</b><span>منتج متوفر</span></div>
+    <div class="stat"><b>+8000</b><span>عميل سعيد</span></div>
+    <div class="stat"><b>24h</b><span>توصيل سريع</span></div>
+    <div class="stat"><b>100%</b><span>أصلي وضمان</span></div>
+  </div>
+</section>
+
+<!-- ======== التصنيفات ======== -->
+<section id="cats">
+  <div class="sec-head">
+    <div>
+      <div class="sec-kicker">📦 تسوق حسب احتياجك</div>
+      <h2 class="sec-title">التصنيفات 📂</h2>
+      <div class="sec-sub">عندنا كل اكسسوارات الموبايل اللي في السوق.. اختار ودوس</div>
+    </div>
+    <button class="sec-link" onclick="setCategory('all');goTo('ads')">عرض الكل</button>
+  </div>
+  <div class="cats" id="catsGrid"></div>
+</section>
+
+<!-- ======== شريط البراندات ======== -->
+<section>
+  <div class="brands-card">
+    <div class="brands-head">
+      <h3>🏷️ تسوق بالبراند</h3>
+      <button class="brand-clear" id="brandClear" onclick="setBrand('all')">✕ إلغاء الفلتر</button>
+    </div>
+    <div class="brands-row no-scroll" id="brandsRow"></div>
+  </div>
+</section>
+
+<!-- ======== عروض الفلاش + العداد ======== -->
+<section id="flash">
+  <div class="flash-wrap">
+    <span class="flash-glow1"></span><span class="flash-glow2"></span>
+    <div class="flash-head">
+      <div class="flash-title">
+        <span class="fe">🔥</span>
+        <div>
+          <h2>عروض الفلاش ⚡</h2>
+          <p>خصومات بتوصل لـ 40%.. الكمية محدودة!</p>
+        </div>
+      </div>
+      <div class="countdown">
+        <div class="cd-box"><b id="cdH">00</b><span>ساعة</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-box"><b id="cdM">00</b><span>دقيقة</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-box"><b id="cdS">00</b><span>ثانية</span></div>
+      </div>
+    </div>
+    <div class="flash-grid" id="flashGrid"></div>
+  </div>
+</section>
+
+<!-- ======== الإعلانات + الفلاتر ======== -->
+<section id="ads">
+  <div class="sec-head">
+    <div>
+      <div class="sec-kicker">✨ جديد كل يوم</div>
+      <h2 class="sec-title">الإعلانات 📢 <span id="resultCount" style="font-size:13px;font-weight:800;color:var(--muted)"></span></h2>
+    </div>
+    <button class="filter-toggle" id="filterToggle" onclick="toggleFilters()">⚙️ الفلاتر ▾</button>
+  </div>
+
+  <!-- لوحة الفلاتر -->
+  <div class="filter-panel" id="filterPanel">
+    <div class="f-field">
+      <label>📂 التصنيف</label>
+      <select id="catSelect" onchange="setCategory(this.value)"></select>
+    </div>
+    <div class="f-field">
+      <label>🏷️ البراند</label>
+      <select id="brandSelect" onchange="setBrand(this.value)"></select>
+    </div>
+    <div class="f-field">
+      <label>💰 أقصى سعر: <b id="priceVal">7000 ج</b></label>
+      <input type="range" id="priceRange" min="50" max="7000" step="50" value="7000" oninput="setMaxPrice(this.value)" />
+      <div class="range-labels"><span>50</span><span>7000</span></div>
+    </div>
+    <div class="f-field">
+      <label>🔃 الترتيب</label>
+      <div class="sort-row">
+        <button id="sort-newest" onclick="setSort('newest')">الأحدث</button>
+        <button id="sort-cheapest" onclick="setSort('cheapest')">الأرخص</button>
+        <button id="sort-expensive" onclick="setSort('expensive')">الأغلى</button>
+      </div>
+    </div>
+    <button class="clear-filters" id="clearFilters" onclick="clearAllFilters()" style="grid-column:1/-1">🗑️ مسح كل الفلاتر</button>
+  </div>
+
+  <!-- شرائح الفلاتر النشطة -->
+  <div class="chips" id="chips"></div>
+
+  <!-- شبكة المنتجات -->
+  <div id="productsArea"></div>
+</section>
+
+<!-- ======== ليه PANDA ======== -->
+<section>
+  <div class="center-head">
+    <h2>ليه PANDA؟ 🐼</h2>
+    <p>عشان احنا مش مجرد ستور.. احنا ضهرك في أي حاجة تخص موبايلك</p>
+  </div>
+  <div class="why-grid">
+    <div class="why">
+      <div class="we" style="background:linear-gradient(135deg,#10b981,#0d9488)">🛡️</div>
+      <b>منتجات أصلية</b>
+      <p>كل حاجة بالضمان والفاتورة، مفيش كوبي على إنه أصلي</p>
+    </div>
+    <div class="why">
+      <div class="we" style="background:linear-gradient(135deg,#3b82f6,#4f46e5)">✅</div>
+      <b>ضمان واستبدال</b>
+      <p>ضمان حقيقي لحد سنة واستبدال فوري لو فيه عيب صناعة</p>
+    </div>
+    <div class="why">
+      <div class="we" style="background:linear-gradient(135deg,#f97316,#dc2626)">🚚</div>
+      <b>توصيل بسرعة الصاروخ</b>
+      <p>القاهرة والجيزة خلال 24 ساعة والمحافظات 2-3 أيام</p>
+    </div>
+    <div class="why">
+      <div class="we" style="background:linear-gradient(135deg,#84cc16,#16a34a)">💵</div>
+      <b>كاش عند الاستلام</b>
+      <p>عاين بنفسك الأول وادفع لما تستلم وتتطمن</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======== آراء العملاء ======== -->
+<section id="reviews">
+  <div class="sec-head">
+    <h2 class="sec-title">آراء عملائنا ⭐</h2>
+    <div class="rev-nav">
+      <button onclick="revPrev()">›</button>
+      <button onclick="revNext()">‹</button>
+    </div>
+  </div>
+  <div class="rev-viewport">
+    <div class="rev-track" id="revTrack"></div>
+  </div>
+  <div class="rev-dots" id="revDots"></div>
+</section>
+
+<!-- ======== فورم إضافة إعلان (للإدارة) ======== -->
+<section>
+  <div class="admin-card">
+    <div class="admin-head">
+      <h2>➕ ضيف إعلان جديد <span class="pill">للإدارة</span></h2>
+      <p>نزّل منتجك على الموقع في ثواني.. هيظهر فوراً في قسم الإعلانات فوق 👆</p>
+    </div>
+    <form class="admin-form" id="adminForm">
+      <div class="a-field a-span2">
+        <label>📝 اسم المنتج *</label>
+        <input id="fName" type="text" placeholder="مثال: سماعة بلوتوث Zero Bass الجديدة" />
+      </div>
+      <div class="a-field">
+        <label>📂 التصنيف</label>
+        <select id="fCategory"></select>
+      </div>
+      <div class="a-field">
+        <label>🏷️ البراند</label>
+        <div class="brand-pick" id="fBrandPick"></div>
+      </div>
+      <div class="a-field">
+        <label>💰 السعر الجديد (جنيه) *</label>
+        <input id="fPrice" type="text" inputmode="numeric" placeholder="مثال: 850" />
+      </div>
+      <div class="a-field">
+        <label>💸 السعر القديم (اختياري - عشان الخصم)</label>
+        <input id="fOldPrice" type="text" inputmode="numeric" placeholder="مثال: 1200" />
+      </div>
+      <div class="a-field a-span2">
+        <label>🖼️ رابط الصورة (اختياري)</label>
+        <input id="fImage" type="text" class="ltr" placeholder="https://... لو مفيش هنحط أيقونة شيك تلقائياً" />
+      </div>
+      <div class="a-field a-span2">
+        <label>📄 وصف مختصر</label>
+        <textarea id="fDesc" rows="2" placeholder="اكتب مميزات المنتج في سطرين..."></textarea>
+      </div>
+      <button type="submit" class="btn-publish a-span2">🚀 نشر الإعلان دلوقتي</button>
+    </form>
+  </div>
+</section>
+
+<!-- ======== التواصل ======== -->
+<section id="contact">
+  <div class="center-head">
+    <h2>كلمنا في أي وقت 📞</h2>
+    <p>بنرد بسرعة على واتساب من 11 الصبح لـ 11 بالليل</p>
+  </div>
+  <div class="contact-grid">
+    <a class="ccard wa-big" id="waContact" target="_blank" rel="noreferrer">
+      <span class="ci">💬</span>
+      <span><b>واتساب (أسرع رد ⚡)</b><span dir="ltr">0100 123 4567</span></span>
+    </a>
+    <a class="ccard" href="tel:+201001234567">
+      <span class="ci" style="background:rgba(182,255,46,.15)">📞</span>
+      <span><b>اتصل بينا</b><span dir="ltr">0100 123 4567</span></span>
+    </a>
+    <div class="ccard">
+      <span class="ci" style="background:rgba(249,115,22,.15)">⏰</span>
+      <span><b>مواعيد الشغل</b><span>يومياً 11ص - 11م (الجمعة من 4م)</span></span>
+    </div>
+    <div class="ccard">
+      <span class="ci" style="background:rgba(59,130,246,.15)">📍</span>
+      <span><b>مكاننا</b><span>وسط البلد، القاهرة - وبنوصل لكل مصر 🚚</span></span>
+    </div>
+    <a class="ccard" href="#" onclick="return false">
+      <span class="ci" style="background:rgba(24,119,242,.15)">👍</span>
+      <span><b>فيسبوك</b><span dir="ltr">PANDA Phone&amp;subwoofer</span></span>
+    </a>
+    <a class="ccard" href="#" onclick="return false">
+      <span class="ci" style="background:linear-gradient(135deg,#a855f7,#ec4899,#fb923c)">📸</span>
+      <span><b>انستجرام</b><span dir="ltr">@panda.phone</span></span>
+    </a>
+  </div>
+</section>
+
+<!-- ======== الفوتر ======== -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-logo"><span class="lb">🐼</span> <span>PANDA <b>Phone&amp;subwoofer</b></span></div>
+      <p class="foot-desc">وجهتك الأولى لكل اكسسوارات الموبايل في مصر. أصلي، ضمان، سعر على قد الإيد، وتوصيل لحد باب البيت.</p>
+      <div class="foot-social">
+        <a href="#" onclick="return false">👍</a>
+        <a href="#" onclick="return false">📸</a>
+        <a class="foot-wa-link" target="_blank" rel="noreferrer">💬</a>
+        <a href="tel:+201001234567">📞</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>🔗 لينكات سريعة</h4>
+      <ul>
+        <li><button onclick="goTo('top')">الرئيسية</button></li>
+        <li><button onclick="goTo('cats')">التصنيفات</button></li>
+        <li><button onclick="goTo('ads')">الإعلانات</button></li>
+        <li><button onclick="goTo('flash')">عروض الفلاش</button></li>
+        <li><button onclick="goTo('reviews')">آراء العملاء</button></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>📂 أشهر التصنيفات</h4>
+      <ul id="footCats"></ul>
+    </div>
+    <div class="foot-col">
+      <h4>💬 تواصل</h4>
+      <ul>
+        <li>📞 <span dir="ltr">0100 123 4567</span></li>
+        <li>📍 وسط البلد، القاهرة</li>
+        <li>⏰ يومياً 11ص - 11م</li>
+      </ul>
+      <a class="foot-wa foot-wa-link" target="_blank" rel="noreferrer">💬 اطلب واتساب</a>
+    </div>
+  </div>
+  <div class="copy">🐼 PANDA Phone&amp;subwoofer © 2026 - كل الحقوق محفوظة • صُنع بحب في مصر 🇪🇬</div>
+</footer>
+
+<!-- ======== زر واتساب العايم ======== -->
+<a class="fab-wa" id="fabWa" target="_blank" rel="noreferrer" aria-label="whatsapp">💬</a>
+
+<!-- ======== شريط الموبايل السفلي ======== -->
+<div class="bottom-bar">
+  <button onclick="goTo('ads')"><span class="bicon">🎧</span> تسوق</button>
+  <button onclick="openCart()"><span class="bicon">🛒</span> السلة <span class="bb-badge" id="bbBadge">0</span></button>
+  <a class="bb-wa" id="bbWa" target="_blank" rel="noreferrer"><span class="bicon">💬</span> واتساب</a>
+</div>
+<div style="height:70px" class="bb-spacer"></div>
+
+<!-- ======== درج السلة ======== -->
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-backdrop" onclick="closeCart()"></div>
+  <aside class="cart-drawer">
+    <div class="cart-head">
+      <span class="ch-ic">🛒</span>
+      <div>
+        <b>سلة المشتريات 🛒</b>
+        <span id="cartHeadInfo">0 منتج</span>
+      </div>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-foot" id="cartFoot">
+      <input id="buyerName" type="text" placeholder="👤 اسمك بالكامل" />
+      <div class="buyer-row">
+        <input id="buyerPhone" type="tel" placeholder="📞 رقم الموبايل" />
+        <input id="buyerAddress" type="text" placeholder="📍 العنوان" />
+      </div>
+      <div class="total-row"><span>الإجمالي:</span><b id="cartTotal">0 ج.م</b></div>
+      <div class="ship-note">🚚 الشحن بيتحسب حسب المنطقة + 💵 الدفع كاش عند الاستلام</div>
+      <button class="btn-checkout" onclick="checkoutWhats()">💬 إتمام الطلب عبر واتساب</button>
+      <button class="btn-clear-cart" onclick="clearCart()">مسح السلة كلها</button>
+    </div>
+  </aside>
+</div>
+
+<!-- ======== التوست ======== -->
+<div class="toast" id="toast">
+  <div class="toast-inner"><span class="ti">✓</span><span id="toastMsg"></span></div>
+</div>
+
+<script>
+/* ============================================================
+   PANDA Phone&subwoofer — كل الجافاسكريبت (Vanilla JS)
+============================================================ */
+
+/* ---------- الإعدادات العامة ---------- */
+var WHATSAPP_NUMBER = "201001234567";
+
+function waLink(text){
+  return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
+}
+function fmt(n){ return Number(n).toLocaleString("ar-EG"); }
+function esc(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+/* ---------- التصنيفات ---------- */
+var CATEGORIES = [
+  { id:"mobiles",          name:"موبايلات",                  emoji:"📱", desc:"أحدث الأجهزة",      grad:"linear-gradient(135deg,#7c3aed,#c026d3,#ec4899)" },
+  { id:"airpods",          name:"سماعات AirPods وبلوتوث",     emoji:"🎧", desc:"صوت نقي وعزل",      grad:"linear-gradient(135deg,#06b6d4,#2563eb,#4338ca)" },
+  { id:"wired",            name:"سماعات سلك",                emoji:"🎵", desc:"للجيمنج والمكالمات", grad:"linear-gradient(135deg,#f59e0b,#ea580c,#dc2626)" },
+  { id:"smartwatch",       name:"ساعات سمارت",               emoji:"⌚", desc:"تابع صحتك",         grad:"linear-gradient(135deg,#10b981,#0d9488,#0e7490)" },
+  { id:"covers",           name:"جرابات موبايل",             emoji:"📲", desc:"حماية وشياكة",      grad:"linear-gradient(135deg,#ec4899,#e11d48,#dc2626)" },
+  { id:"iphone-chargers",  name:"شواحن آيفون",               emoji:"🍏", desc:"شحن سريع أصلي",     grad:"linear-gradient(135deg,#52525b,#27272a,#000)" },
+  { id:"android-chargers", name:"شواحن أندرويد",             emoji:"⚡", desc:"Type-C وتيربو",      grad:"linear-gradient(135deg,#84cc16,#16a34a,#047857)" },
+  { id:"heads",            name:"صبات شحن",                  emoji:"🔌", desc:"رؤوس GaN سريعة",    grad:"linear-gradient(135deg,#0ea5e9,#2563eb,#6d28d9)" },
+  { id:"electric",         name:"كهرباء",                    emoji:"💡", desc:"مشترك وكابلات",     grad:"linear-gradient(135deg,#facc15,#f59e0b,#ea580c)" },
+  { id:"powerbank",        name:"باور بانك",                 emoji:"🔋", desc:"طاقة تكمل معاك",    grad:"linear-gradient(135deg,#22c55e,#059669,#0f766e)" },
+  { id:"accessories",      name:"إكسسوارات متنوعة",          emoji:"🎁", desc:"كل اللي تتخيله",    grad:"linear-gradient(135deg,#a855f7,#7c3aed,#4338ca)" }
+];
+var BRANDS = ["vovo","zero","tigger","JBL","smile","zinge"];
+
+function catById(id){
+  for(var i=0;i<CATEGORIES.length;i++){ if(CATEGORIES[i].id===id) return CATEGORIES[i]; }
+  return CATEGORIES[CATEGORIES.length-1];
+}
+
+/* ---------- المنتجات (26 منتج) ---------- */
+var PRODUCTS = [
+  { id:1,  name:"موبايل Vovo Y36 - رام 8 + 128 جيجا",              cat:"mobiles",          brand:"vovo",   price:6850, old:7999, rating:4.8, rc:132, emoji:"📱", tag:"عرض",          date:28, desc:"شاشة 90Hz وبطارية 5000mAh وشحن سريع" },
+  { id:2,  name:"سماعة Zero Buds Pro - عزل ضوضاء",                 cat:"airpods",          brand:"zero",   price:1450, old:1999, rating:4.9, rc:240, emoji:"🎧", tag:"الأكثر مبيعاً", date:30, desc:"بلوتوث 5.3 وعلبة شحن سريع Type-C" },
+  { id:3,  name:"سماعة سلك Tigger Bass - مايك نقي",                cat:"wired",            brand:"tigger", price:175,  old:275,  rating:4.6, rc:410, emoji:"🎵", tag:"عرض",          date:12, desc:"بيز عميق وسلك مضفر ضد القطع" },
+  { id:4,  name:"ساعة Smile Watch Ultra 2",                        cat:"smartwatch",       brand:"smile",  price:1950, old:2600, rating:4.7, rc:98,  emoji:"⌚", tag:"جديد",          date:32, desc:"شاشة أموليد ومكالمات بلوتوث و GPS" },
+  { id:5,  name:"جراب شفاف ضد الصدمات - آيفون 13/14/15",           cat:"covers",           brand:"zinge",  price:120,  old:200,  rating:4.5, rc:530, emoji:"📲", tag:"عرض",          date:10, desc:"حماية عسكرية وخامة ضد الاصفرار" },
+  { id:6,  name:"شاحن آيفون أصلي 20W - كابل Type-C للايتننج",      cat:"iphone-chargers",  brand:"vovo",   price:450,  old:650,  rating:4.8, rc:210, emoji:"🍏", tag:"الأكثر مبيعاً", date:22, desc:"شحن سريع 50% في 30 دقيقة" },
+  { id:7,  name:"شاحن أندرويد تيربو 67W - Type-C",                 cat:"android-chargers", brand:"zero",   price:550,  old:750,  rating:4.7, rc:180, emoji:"⚡", tag:"عرض",          date:25, desc:"يدعم شاومي وسامسونج وهواوي" },
+  { id:8,  name:"رأس شاحن GaN صبة 35W مزدوجة",                     cat:"heads",            brand:"tigger", price:650,  old:850,  rating:4.9, rc:95,  emoji:"🔌", tag:"جديد",          date:33, desc:"حجم ميني وحماية من الحرارة" },
+  { id:9,  name:"مشترك كهرباء 5 مخارج + 3 USB",                    cat:"electric",         brand:"JBL",    price:380,  old:520,  rating:4.6, rc:77,  emoji:"💡", tag:"عرض",          date:15, desc:"حماية من الحمل الزائد وسلك 2 متر" },
+  { id:10, name:"باور بانك Zinge 20000mAh شحن سريع 22.5W",         cat:"powerbank",        brand:"zinge",  price:950,  old:1350, rating:4.8, rc:310, emoji:"🔋", tag:"الأكثر مبيعاً", date:27, desc:"شاشة ديجيتال ومنفذين + Type-C" },
+  { id:11, name:"اسكرينة سيراميك 9D ضد الكسر",                     cat:"accessories",      brand:"smile",  price:75,   old:120,  rating:4.4, rc:620, emoji:"🛡️", tag:"عرض",          date:8,  desc:"تركب على أي موديل وتغطية كاملة" },
+  { id:12, name:"صَب ووفر PANDA Mini Boom - بيزة تهز المكان",      cat:"airpods",          brand:"JBL",    price:2250, old:2999, rating:5.0, rc:64,  emoji:"🔊", tag:"حصري",          date:34, desc:"صوت 360 درجة وبطارية 12 ساعة و RGB", grad:"linear-gradient(135deg,#dc2626,#ea580c,#f59e0b)" },
+  { id:13, name:"سماعة بلوتوث Smile Headphone Max",                cat:"airpods",          brand:"smile",  price:1100, old:1500, rating:4.7, rc:142, emoji:"🎧", tag:"جديد",          date:31, desc:"بطارية 40 ساعة وطي مريح للسفر", grad:"linear-gradient(135deg,#6366f1,#9333ea,#db2777)" },
+  { id:14, name:"كابل شحن Vovo مدرع 60W - متر ونص",                cat:"electric",         brand:"vovo",   price:150,  old:220,  rating:4.6, rc:380, emoji:"🔗", tag:"عرض",          date:14, desc:"نايلون مضفر ويدعم الداتا السريعة", grad:"linear-gradient(135deg,#475569,#1e293b,#000)" },
+  { id:15, name:"حامل موبايل للعربية + للمكتب 360 درجة",           cat:"accessories",      brand:"tigger", price:210,  old:320,  rating:4.5, rc:190, emoji:"📱", tag:"",              date:9,  desc:"تثبيت مغناطيسي قوي ولف كامل", grad:"linear-gradient(135deg,#14b8a6,#0891b2,#1d4ed8)" },
+  { id:16, name:"ميموري كارت 128 جيجا Class 10",                   cat:"accessories",      brand:"zero",   price:420,  old:550,  rating:4.7, rc:120, emoji:"💾", tag:"عرض",          date:18, desc:"سرعة قراءة 100MB/s للموبايل والكاميرا", grad:"linear-gradient(135deg,#f97316,#dc2626,#be185d)" },
+  { id:17, name:"شاحن عربية مزدوج 38W + كابل هدية",                cat:"android-chargers", brand:"zinge",  price:280,  old:400,  rating:4.6, rc:210, emoji:"🚗", tag:"عرض",          date:20, desc:"شحن سريع لمنفذين وحماية ذكية", grad:"linear-gradient(135deg,#2563eb,#4338ca,#6b21a8)" },
+  { id:18, name:"ساعة Zero Fit S - أموليد ورد على المكالمات",      cat:"smartwatch",       brand:"zero",   price:1350, old:1750, rating:4.8, rc:175, emoji:"⌚", tag:"الأكثر مبيعاً", date:26, desc:"قياس أكسجين وضغط و 100 وضع رياضي", grad:"linear-gradient(135deg,#f43f5e,#db2777,#a21caf)" },
+  { id:19, name:"AirPods Vovo Pro 2 - كوبي درجة أولى",             cat:"airpods",          brand:"vovo",   price:850,  old:1200, rating:4.5, rc:290, emoji:"🎧", tag:"عرض",          date:24, desc:"سينسور لمس وعزل و GPS للآيفون", grad:"linear-gradient(135deg,#71717a,#525252,#44403c)" },
+  { id:20, name:"جراب جلد فاخر Smile - سامسونج S23/S24",           cat:"covers",           brand:"smile",  price:250,  old:350,  rating:4.7, rc:88,  emoji:"👝", tag:"جديد",          date:29, desc:"جلد طبيعي وجيب للكروت ومغناطيس", grad:"linear-gradient(135deg,#d97706,#a16207,#9a3412)" },
+  { id:21, name:"باور بانك صغير Tigger Pocket 10000mAh",           cat:"powerbank",        brand:"tigger", price:650,  old:800,  rating:4.6, rc:140, emoji:"🔋", tag:"جديد",          date:32, desc:"حجم الكريدت كارد وشحن Type-C سريع", grad:"linear-gradient(135deg,#0891b2,#0369a1,#1e40af)" },
+  { id:22, name:"وصلة تحويلة من Type-C لسماعة 3.5mm",              cat:"wired",            brand:"JBL",    price:95,   old:150,  rating:4.4, rc:260, emoji:"🎧", tag:"",              date:7,  desc:"DAC مدمج لصوت أنقى بدون تأخير", grad:"linear-gradient(135deg,#65a30d,#15803d,#065f46)" },
+  { id:23, name:"صبة شاحن Smile رباعية 65W GaN",                   cat:"heads",            brand:"smile",  price:890,  old:1150, rating:4.9, rc:73,  emoji:"🔌", tag:"حصري",          date:35, desc:"تشحن لابتوب وموبايلين مع بعض", grad:"linear-gradient(135deg,#7c3aed,#6d28d9,#3730a3)" },
+  { id:24, name:"سبيكر Zinge Subwoofer Party 40W",                 cat:"airpods",          brand:"zinge",  price:1750, old:2300, rating:4.8, rc:59,  emoji:"🔊", tag:"عرض",          date:23, desc:"بيز تقيل وبلوتوث ومدخل فلاشة وكارت", grad:"linear-gradient(135deg,#c026d3,#7e22ce,#3730a3)" },
+  { id:25, name:"كابل آيفون قماش Vovo - ضد القطع",                 cat:"iphone-chargers",  brand:"JBL",    price:180,  old:260,  rating:4.5, rc:310, emoji:"🍏", tag:"",              date:11, desc:"طول 2 متر وشحن سريع PD", grad:"linear-gradient(135deg,#78716c,#44403c,#1c1917)" },
+  { id:26, name:"ترايبود + سيلفي ستيك 2 في 1 مع ريموت",            cat:"accessories",      brand:"zinge",  price:320,  old:450,  rating:4.6, rc:105, emoji:"📸", tag:"جديد",          date:30, desc:"للبث والتيك توك والرحلات", grad:"linear-gradient(135deg,#3b82f6,#0891b2,#0f766e)" }
+];
+
+/* ---------- سلايدات الهيرو ---------- */
+var HERO_SLIDES = [
+  { badge:"✨ خصم حتى 40%", title:"عروض الباور بانك والشواحن السريعة", sub:"اشحن موبايلك في دقايق.. باور Zinge الأصلي ومعاه ضمان سنة", cta:"تسوق الآن", emoji:"⚡",
+    bgDark:"linear-gradient(225deg,#0f1f00,#1a3000 50%,#000)", bgLight:"linear-gradient(225deg,#a3e635,#22c55e 50%,#047857)" },
+  { badge:"🔥 جديد وحصري", title:"صبات PANDA Subwoofer تهز المكان", sub:"بيز تقيل وصوت 360 درجة.. جرب قبل ما تشتري والتوصيل لحد البيت", cta:"اكتشف الصبات", emoji:"🔊",
+    bgDark:"linear-gradient(225deg,#2a0a00,#3d1200 50%,#000)", bgLight:"linear-gradient(225deg,#f97316,#dc2626 50%,#9d174d)" },
+  { badge:"🎧 AirPods بأسعار على قد الإيد", title:"سماعات بلوتوث بعزل حقيقي", sub:"Zero و Vovo و JBL.. ضمان استبدال وأسعار تبدأ من 175 جنيه", cta:"شوف السماعات", emoji:"🎧",
+    bgDark:"linear-gradient(225deg,#001a2e,#002b4d 50%,#000)", bgLight:"linear-gradient(225deg,#22d3ee,#2563eb 50%,#312e81)" }
+];
+
+/* ---------- آراء العملاء ---------- */
+var REVIEWS = [
+  { name:"أحمد سامي",  area:"القاهرة - مدينة نصر", text:"طلبت باور بانك وشاحن سريع ووصلوا تاني يوم. التغليف ممتاز والمنتج أصلي فعلاً. أحسن تعامل جربته أونلاين.", rating:5, emoji:"🧔🏻" },
+  { name:"مريم خالد",  area:"الجيزة - فيصل",       text:"الـ AirPods صوتها تحفة والبنت اللي ردت عليا على واتساب ذوق جداً وساعدتني أختار. أكيد هطلب تاني.", rating:5, emoji:"👩🏻" },
+  { name:"كريم محمود", area:"الإسكندرية",          text:"كنت خايف من الكوبي بس الجراب والاسكرينة خاماتهم نضيفة والسعر أرخص من المحلات بكتير. الدفع عند الاستلام ريحني.", rating:4, emoji:"👨🏻‍🦱" },
+  { name:"سارة عادل",  area:"المنصورة",            text:"الساعة السمارت طلعت أحلى من الصور والبطارية بتقعد 7 أيام. التوصيل أخد يومين بس عشان المحافظات.", rating:5, emoji:"👩🏻‍🦰" },
+  { name:"مصطفى حسين", area:"شبرا",                text:"الصَب الـ JBL صوته جبار! شغلته في فرح أخويا والناس كلها سألت عليه. شكراً PANDA على المصداقية.", rating:5, emoji:"🧑🏻" }
+];
+
+/* ---------- الحالة العامة ---------- */
+var state = {
+  search:"", cat:"all", brand:"all", maxPrice:7000, sort:"newest",
+  cart:{},            /* { productId: quantity } */
+  heroIdx:0, revIdx:0, filtersOpen:false, fBrand:"vovo"
+};
+
+/* ============================================================
+   أدوات مساعدة للعرض
+============================================================ */
+function prodById(id){
+  for(var i=0;i<PRODUCTS.length;i++){ if(PRODUCTS[i].id===id) return PRODUCTS[i]; }
+  return null;
+}
+function prodGrad(p){ return p.grad || catById(p.cat).grad; }
+function discPct(p){ return p.old ? Math.round(((p.old-p.price)/p.old)*100) : 0; }
+function starsHtml(r){
+  var full = Math.round(r), s = "";
+  for(var i=0;i<5;i++){ s += i<full ? "★" : "☆"; }
+  return s;
+}
+function tagHtml(p){
+  if(!p.tag) return "";
+  var cls = "t-sale", txt = "🔥 عرض";
+  if(p.tag==="جديد"){ cls="t-new"; txt="✨ جديد"; }
+  else if(p.tag==="الأكثر مبيعاً"){ cls="t-hot"; txt="الأكثر مبيعاً"; }
+  else if(p.tag==="حصري"){ cls="t-ex"; txt="حصري"; }
+  return '<span class="ptag '+cls+'">'+txt+'</span>';
+}
+
+/* ---------- سكرول لقسم ---------- */
+function goTo(id){
+  var el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+  document.getElementById("mobileMenu").classList.remove("show");
+}
+
+/* ---------- التوست ---------- */
+var toastTimer = null;
+function showToast(msg){
+  document.getElementById("toastMsg").textContent = msg;
+  var t = document.getElementById("toast");
+  t.classList.remove("show");
+  void t.offsetWidth;                       /* إعادة تشغيل الأنيميشن */
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 2200);
+}
+
+/* ============================================================
+   الهيرو (سلايدر)
+============================================================ */
+function renderHero(){
+  var s = HERO_SLIDES[state.heroIdx];
+  var dark = !document.body.classList.contains("light");
+  document.getElementById("heroBg").style.background = dark ? s.bgDark : s.bgLight;
+  document.getElementById("heroBadge").textContent = s.badge;
+  document.getElementById("heroTitle").textContent = s.title;
+  document.getElementById("heroSub").textContent = s.sub;
+  document.getElementById("heroCta").textContent = s.cta;
+  document.getElementById("heroEmojiBig").textContent = s.emoji;
+  document.getElementById("heroVisualE").textContent = s.emoji;
+  var dots = "";
+  for(var i=0;i<HERO_SLIDES.length;i++){
+    dots += '<button class="'+(i===state.heroIdx?"on":"")+'" onclick="heroGo('+i+')" aria-label="شريحة '+(i+1)+'"></button>';
+  }
+  document.getElementById("heroDots").innerHTML = dots;
+}
+function heroGo(i){ state.heroIdx = i; renderHero(); }
+function heroNext(){ state.heroIdx = (state.heroIdx+1) % HERO_SLIDES.length; renderHero(); }
+function heroPrev(){ state.heroIdx = (state.heroIdx-1+HERO_SLIDES.length) % HERO_SLIDES.length; renderHero(); }
+setInterval(heroNext, 5000);                /* تشغيل تلقائي */
+
+/* ============================================================
+   التصنيفات
+============================================================ */
+function renderCats(){
+  var html = "";
+  for(var i=0;i<CATEGORIES.length;i++){
+    var c = CATEGORIES[i];
+    var count = 0;
+    for(var j=0;j<PRODUCTS.length;j++){ if(PRODUCTS[j].cat===c.id) count++; }
+    var active = state.cat===c.id;
+    html += '<button class="cat'+(active?" active":"")+'" onclick="toggleCat(\''+c.id+'\')">'
+      + '<span class="tint" style="background:'+c.grad+'"></span>'
+      + '<span class="check">✓</span>'
+      + '<span class="ic" style="background:'+c.grad+'">'+c.emoji+'</span>'
+      + '<b>'+c.name+'</b>'
+      + '<span>'+c.desc+' • '+count+' منتج</span>'
+      + '</button>';
+  }
+  /* كارت "مش لاقي" */
+  html += '<div class="cat-note">'
+    + '<span class="e">🐼</span>'
+    + '<b>مش لاقي اللي بتدور عليه؟</b>'
+    + '<a href="'+waLink("🐼 بدور على اكسسوار مش لاقيه في الموقع")+'" target="_blank" rel="noreferrer">ابعت لنا واتساب وهنوفرهولك ✅</a>'
+    + '</div>';
+  document.getElementById("catsGrid").innerHTML = html;
+}
+function toggleCat(id){
+  setCategory(state.cat===id ? "all" : id);
+  goTo("ads");
+}
+
+/* ============================================================
+   البراندات
+============================================================ */
+function renderBrands(){
+  var html = '<button class="brand-chip'+(state.brand==="all"?" on":"")+'" onclick="setBrand(\'all\')" style="direction:rtl">الكل</button>';
+  for(var i=0;i<BRANDS.length;i++){
+    var b = BRANDS[i];
+    html += '<button class="brand-chip'+(state.brand===b?" on":"")+'" onclick="pickBrand(\''+b+'\')">'+b+'</button>';
+  }
+  document.getElementById("brandsRow").innerHTML = html;
+  var clearBtn = document.getElementById("brandClear");
+  if(state.brand!=="all"){ clearBtn.classList.add("show"); clearBtn.textContent = "✕ إلغاء فلتر "+state.brand; }
+  else clearBtn.classList.remove("show");
+}
+function pickBrand(b){
+  setBrand(state.brand===b ? "all" : b);
+  goTo("ads");
+}
+
+/* ============================================================
+   عروض الفلاش + العداد
+============================================================ */
+function renderFlash(){
+  /* أعلى 4 خصومات */
+  var deals = PRODUCTS.filter(function(p){ return p.old; })
+    .sort(function(a,b){ return discPct(b)-discPct(a); }).slice(0,4);
+  var html = "";
+  for(var i=0;i<deals.length;i++){
+    var p = deals[i];
+    var img = p.img
+      ? '<img src="'+esc(p.img)+'" alt="'+esc(p.name)+'" loading="lazy" />'
+      : '<span style="filter:drop-shadow(0 8px 14px rgba(0,0,0,.4))">'+p.emoji+'</span>';
+    html += '<div class="fcard">'
+      + '<div class="fimg" style="background:'+prodGrad(p)+'">'+img
+      + '<span class="disc">-'+discPct(p)+'%</span></div>'
+      + '<div class="fname">'+esc(p.name)+'</div>'
+      + '<div class="fprices"><span class="fnew">'+fmt(p.price)+' ج</span><span class="fold">'+fmt(p.old)+'</span></div>'
+      + '<button onclick="addToCart('+p.id+')">⚡ الحق العرض</button>'
+      + '</div>';
+  }
+  document.getElementById("flashGrid").innerHTML = html;
+}
+/* العداد التنازلي: 13 ساعة و 27 دقيقة من فتح الصفحة */
+var countdownTarget = Date.now() + 1000*60*60*13 + 1000*60*27 + 1000*42;
+function tickCountdown(){
+  var r = Math.max(0, countdownTarget - Date.now());
+  var h = Math.floor(r/3600000), m = Math.floor((r%3600000)/60000), s = Math.floor((r%60000)/1000);
+  document.getElementById("cdH").textContent = String(h).padStart(2,"0");
+  document.getElementById("cdM").textContent = String(m).padStart(2,"0");
+  document.getElementById("cdS").textContent = String(s).padStart(2,"0");
+}
+setInterval(tickCountdown, 1000); tickCountdown();
+
+/* ============================================================
+   الفلاتر + شبكة المنتجات
+============================================================ */
+function toggleFilters(){
+  state.filtersOpen = !state.filtersOpen;
+  document.getElementById("filterPanel").classList.toggle("show", state.filtersOpen);
+  document.getElementById("filterToggle").classList.toggle("on", state.filtersOpen);
+}
+function setCategory(v){ state.cat = v; renderAll(); }
+function setBrand(v){ state.brand = v; renderAll(); }
+function setMaxPrice(v){
+  state.maxPrice = Number(v);
+  document.getElementById("priceVal").textContent = fmt(state.maxPrice)+" ج";
+  renderProducts(); renderChips();
+}
+function setSort(v){ state.sort = v; renderSortButtons(); renderProducts(); }
+function renderSortButtons(){
+  ["newest","cheapest","expensive"].forEach(function(k){
+    document.getElementById("sort-"+k).classList.toggle("on", state.sort===k);
+  });
+}
+function clearAllFilters(){
+  state.cat="all"; state.brand="all"; state.search=""; state.maxPrice=7000; state.sort="newest";
+  document.getElementById("searchInput").value = "";
+  document.getElementById("searchInputMob").value = "";
+  document.getElementById("priceRange").value = 7000;
+  document.getElementById("priceVal").textContent = "7000 ج";
+  renderSortButtons(); renderAll();
+}
+function fillFilterSelects(){
+  var cs = '<option value="all">كل التصنيفات</option>';
+  for(var i=0;i<CATEGORIES.length;i++){
+    cs += '<option value="'+CATEGORIES[i].id+'">'+CATEGORIES[i].emoji+' '+CATEGORIES[i].name+'</option>';
+  }
+  document.getElementById("catSelect").innerHTML = cs;
+  var bs = '<option value="all">كل البراندات</option>';
+  for(var j=0;j<BRANDS.length;j++){ bs += '<option value="'+BRANDS[j]+'">'+BRANDS[j]+'</option>'; }
+  document.getElementById("brandSelect").innerHTML = bs;
+}
+function syncSelects(){
+  document.getElementById("catSelect").value = state.cat;
+  document.getElementById("brandSelect").value = state.brand;
+}
+
+/* ---------- شرائح الفلاتر النشطة ---------- */
+function renderChips(){
+  var html = "";
+  if(state.cat!=="all"){
+    var c = catById(state.cat);
+    html += '<span class="chip c-cat">'+c.emoji+' '+c.name+' <span class="x" onclick="setCategory(\'all\')">✕</span></span>';
+  }
+  if(state.brand!=="all"){
+    html += '<span class="chip c-brand">'+state.brand+' <span class="x" onclick="setBrand(\'all\')">✕</span></span>';
+  }
+  if(state.search){
+    html += '<span class="chip c-search">🔍 "'+esc(state.search)+'" <span class="x" onclick="clearSearch()">✕</span></span>';
+  }
+  document.getElementById("chips").innerHTML = html;
+  var any = state.cat!=="all" || state.brand!=="all" || state.search || state.maxPrice<7000;
+  document.getElementById("clearFilters").classList.toggle("show", !!any);
+}
+function clearSearch(){
+  state.search = "";
+  document.getElementById("searchInput").value = "";
+  document.getElementById("searchInputMob").value = "";
+  renderAll();
+}
+
+/* ---------- فلترة وترتيب ---------- */
+function getFiltered(){
+  var list = PRODUCTS.slice();
+  if(state.cat!=="all")   list = list.filter(function(p){ return p.cat===state.cat; });
+  if(state.brand!=="all") list = list.filter(function(p){ return p.brand===state.brand; });
+  list = list.filter(function(p){ return p.price<=state.maxPrice; });
+  if(state.search){
+    var q = state.search.trim(), ql = q.toLowerCase();
+    list = list.filter(function(p){
+      return p.name.indexOf(q)>-1 || p.desc.indexOf(q)>-1
+        || p.brand.toLowerCase().indexOf(ql)>-1
+        || catById(p.cat).name.indexOf(q)>-1;
+    });
+  }
+  if(state.sort==="cheapest")       list.sort(function(a,b){ return a.price-b.price; });
+  else if(state.sort==="expensive") list.sort(function(a,b){ return b.price-a.price; });
+  else                              list.sort(function(a,b){ return b.date-a.date; });
+  return list;
+}
+
+/* ---------- رسم كروت المنتجات ---------- */
+function renderProducts(){
+  var list = getFiltered();
+  document.getElementById("resultCount").textContent = "("+list.length+" منتج)";
+
+  if(list.length===0){
+    document.getElementById("productsArea").innerHTML =
+      '<div class="empty"><div class="e">🐼🔍</div><b>مفيش نتايج يا صديقي!</b>'
+      + '<p>جرب كلمة تانية أو امسح الفلاتر.. أو ابعتلنا واتساب وهنوفرلك اللي نفسك فيه</p>'
+      + '<div class="empty-btns">'
+      + '<button class="b1" onclick="clearAllFilters()">مسح الفلاتر</button>'
+      + '<a class="b2" href="'+waLink("🐼 بدور على: "+state.search)+'" target="_blank" rel="noreferrer">اسأل واتساب</a>'
+      + '</div></div>';
+    return;
+  }
+
+  var html = '<div class="grid-products">';
+  for(var i=0;i<list.length;i++){
+    var p = list[i];
+    var d = discPct(p);
+    var img = p.img
+      ? '<img src="'+esc(p.img)+'" alt="'+esc(p.name)+'" loading="lazy" />'
+      : '<span class="dots-bg"></span><span class="pe">'+p.emoji+'</span><span class="panda-mark">🐼</span>';
+    html += '<article class="pcard">'
+      + '<div class="pimg" style="background:'+prodGrad(p)+'">'+img
+      + '<div class="ptags">'+tagHtml(p)+'</div>'
+      + (d>0 ? '<span class="pdisc">-'+d+'%</span>' : "")
+      + '<span class="pbrand">'+p.brand+'</span>'
+      + '</div>'
+      + '<div class="pbody">'
+      + '<div class="pcat">'+catById(p.cat).name+'</div>'
+      + '<h3 class="pname">'+esc(p.name)+'</h3>'
+      + '<div class="pstars"><span class="st">'+starsHtml(p.rating)+'</span><span>('+p.rc+')</span></div>'
+      + '<div class="pprices"><span class="pnew">'+fmt(p.price)+' ج.م</span>'
+      + (p.old ? '<span class="pold">'+fmt(p.old)+' ج.م</span>' : "") + '</div>'
+      + '<div class="pacts">'
+      + '<button class="btn-add" onclick="addToCart('+p.id+')">🛒 ضيف للسلة</button>'
+      + '<button class="btn-wa-sq" onclick="orderSingle('+p.id+')" title="اطلب عبر واتساب">💬</button>'
+      + '</div>'
+      + '<button class="btn-wa-line" onclick="orderSingle('+p.id+')">اطلب عبر واتساب ⚡</button>'
+      + '</div></article>';
+  }
+  html += '</div>';
+  document.getElementById("productsArea").innerHTML = html;
+}
+
+/* إعادة رسم كل حاجة مرتبطة بالفلاتر */
+function renderAll(){
+  renderCats(); renderBrands(); renderChips(); syncSelects(); renderProducts();
+}
+
+/* ============================================================
+   السلة
+============================================================ */
+function cartItems(){
+  var items = [];
+  for(var id in state.cart){
+    var p = prodById(Number(id));
+    if(p) items.push({ p:p, qty:state.cart[id] });
+  }
+  return items;
+}
+function cartCount(){
+  var n = 0; for(var id in state.cart) n += state.cart[id]; return n;
+}
+function cartTotal(){
+  var t = 0;
+  var items = cartItems();
+  for(var i=0;i<items.length;i++) t += items[i].p.price * items[i].qty;
+  return t;
+}
+function addToCart(id){
+  state.cart[id] = (state.cart[id]||0)+1;
+  var p = prodById(id);
+  showToast('اتضافت "'+(p ? p.name.slice(0,28) : "")+'..." للسلة 🛒');
+  updateCartUI();
+}
+function changeQty(id, delta){
+  if(!state.cart[id]) return;
+  state.cart[id] = Math.max(1, state.cart[id]+delta);
+  updateCartUI();
+}
+function removeItem(id){
+  delete state.cart[id];
+  updateCartUI();
+}
+function clearCart(){
+  state.cart = {};
+  updateCartUI();
+}
+function openCart(){ document.getElementById("cartOverlay").classList.add("show"); document.body.style.overflow="hidden"; }
+function closeCart(){ document.getElementById("cartOverlay").classList.remove("show"); document.body.style.overflow=""; }
+
+function updateCartUI(){
+  var n = cartCount(), t = cartTotal();
+  /* العدادات */
+  var badge = document.getElementById("cartBadge");
+  badge.textContent = n;
+  badge.style.display = n>0 ? "flex" : "none";
+  var bb = document.getElementById("bbBadge");
+  bb.textContent = n;
+  bb.style.display = n>0 ? "flex" : "none";
+  document.getElementById("cartHeadInfo").textContent = n+" منتج • الإجمالي "+fmt(t)+" ج";
+  document.getElementById("cartTotal").textContent = fmt(t)+" ج.م";
+
+  /* جسم السلة */
+  var body = document.getElementById("cartBody");
+  var items = cartItems();
+  if(items.length===0){
+    body.innerHTML = '<div class="cart-empty"><div class="e">🛒</div><b>السلّة فاضية يا بطل!</b>'
+      + '<p>يلا نملاها بحاجات جامدة من العروض 👇</p>'
+      + '<button onclick="closeCart();goTo(\'ads\')">تسوق دلوقتي 🐼</button></div>';
+    document.getElementById("cartFoot").classList.remove("show");
+    return;
+  }
+  var html = "";
+  for(var i=0;i<items.length;i++){
+    var it = items[i], p = it.p;
+    var img = p.img
+      ? '<img src="'+esc(p.img)+'" alt="" />'
+      : p.emoji;
+    html += '<div class="citem">'
+      + '<div class="cimg" style="background:'+prodGrad(p)+'">'+img+'</div>'
+      + '<div class="cinfo">'
+      + '<div class="cname">'+esc(p.name)+'</div>'
+      + '<div class="cprice">'+fmt(p.price)+' ج</div>'
+      + '<div class="crow">'
+      + '<div class="qty-ctrl">'
+      + '<button onclick="changeQty('+p.id+',-1)">−</button>'
+      + '<b>'+it.qty+'</b>'
+      + '<button onclick="changeQty('+p.id+',1)">+</button>'
+      + '</div>'
+      + '<button class="cdel" onclick="removeItem('+p.id+')">🗑️</button>'
+      + '<span class="csub">'+fmt(p.price*it.qty)+' ج</span>'
+      + '</div></div></div>';
+  }
+  body.innerHTML = html;
+  document.getElementById("cartFoot").classList.add("show");
+}
+
+/* ---------- الطلب عبر واتساب ---------- */
+function orderSingle(id){
+  var p = prodById(id);
+  if(!p) return;
+  var msg = "🐼 أهلاً PANDA Phone&subwoofer\nعايز أطلب المنتج ده:\n\n"
+    + "📦 " + p.name + "\n"
+    + "🏷️ البراند: " + p.brand + "\n"
+    + "💰 السعر: " + p.price + " جنيه" + (p.old ? " (بدل "+p.old+")" : "") + "\n\n"
+    + "الاسم: \nالعنوان: \nرقم الموبايل: ";
+  window.open(waLink(msg), "_blank");
+}
+function checkoutWhats(){
+  var items = cartItems();
+  if(items.length===0) return;
+  var lines = [];
+  for(var i=0;i<items.length;i++){
+    var it = items[i];
+    lines.push((i+1)+"- "+it.p.name+" ("+it.p.brand+") × "+it.qty+" = "+(it.p.price*it.qty)+" ج");
+  }
+  var name = document.getElementById("buyerName").value.trim() || "—";
+  var phone = document.getElementById("buyerPhone").value.trim() || "—";
+  var addr = document.getElementById("buyerAddress").value.trim() || "—";
+  var msg = "🐼 طلب جديد من PANDA Phone&subwoofer\n----------------\n"
+    + lines.join("\n")
+    + "\n----------------\nالإجمالي: " + cartTotal() + " جنيه\n\n"
+    + "👤 الاسم: " + name + "\n📞 الموبايل: " + phone + "\n📍 العنوان: " + addr
+    + "\n\nشكراً، مستني تأكيد الطلب 🙏";
+  window.open(waLink(msg), "_blank");
+}
+
+/* ============================================================
+   آراء العملاء (سلايدر)
+============================================================ */
+function renderReviews(){
+  var html = "";
+  for(var i=0;i<REVIEWS.length;i++){
+    var r = REVIEWS[i];
+    var stars = ""; for(var j=0;j<r.rating;j++) stars += "★";
+    html += '<div class="rev-slide"><div class="rev-card">'
+      + '<span class="q">"</span>'
+      + '<div class="rev-top">'
+      + '<span class="rev-ava">'+r.emoji+'</span>'
+      + '<div><div class="rev-name">'+r.name+' <i>✔</i></div>'
+      + '<div class="rev-area">📍 '+r.area+' • عميل موثّق</div></div>'
+      + '<span class="rev-stars">'+stars+'</span>'
+      + '</div>'
+      + '<p class="rev-text">"'+r.text+'"</p>'
+      + '</div></div>';
+  }
+  document.getElementById("revTrack").innerHTML = html;
+  var dots = "";
+  for(var k=0;k<REVIEWS.length;k++){
+    dots += '<button class="'+(k===state.revIdx?"on":"")+'" onclick="revGo('+k+')" aria-label="رأي '+(k+1)+'"></button>';
+  }
+  document.getElementById("revDots").innerHTML = dots;
+  /* في RTL الإزاحة الموجبة بتحرك للشريحة التالية */
+  document.getElementById("revTrack").style.transform = "translateX("+(state.revIdx*100)+"%)";
+}
+function revGo(i){ state.revIdx = i; renderReviews(); }
+function revNext(){ state.revIdx = (state.revIdx+1) % REVIEWS.length; renderReviews(); }
+function revPrev(){ state.revIdx = (state.revIdx-1+REVIEWS.length) % REVIEWS.length; renderReviews(); }
+
+/* ============================================================
+   فورم الإدارة (إضافة إعلان جديد)
+============================================================ */
+function fillAdminForm(){
+  var cs = "";
+  for(var i=0;i<CATEGORIES.length;i++){
+    cs += '<option value="'+CATEGORIES[i].id+'">'+CATEGORIES[i].emoji+' '+CATEGORIES[i].name+'</option>';
+  }
+  document.getElementById("fCategory").innerHTML = cs;
+  document.getElementById("fCategory").value = "airpods";
+  renderBrandPick();
+}
+function renderBrandPick(){
+  var html = "";
+  for(var i=0;i<BRANDS.length;i++){
+    var b = BRANDS[i];
+    html += '<button type="button" class="'+(state.fBrand===b?"on":"")+'" onclick="pickFormBrand(\''+b+'\')">'+b+'</button>';
+  }
+  document.getElementById("fBrandPick").innerHTML = html;
+}
+function pickFormBrand(b){ state.fBrand = b; renderBrandPick(); }
+
+var nextId = 1000;
+document.getElementById("adminForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var name = document.getElementById("fName").value.trim();
+  var priceStr = document.getElementById("fPrice").value.trim();
+  if(!name || !priceStr){ showToast("اكتب اسم المنتج والسعر الأول يا معلم 😉"); return; }
+  var price = Number(priceStr);
+  if(isNaN(price) || price<=0){ showToast("السعر لازم يكون رقم صحيح"); return; }
+  var oldStr = document.getElementById("fOldPrice").value.trim();
+  var old = oldStr ? Number(oldStr) : null;
+  if(old!==null && (isNaN(old) || old<=price)) old = null;
+  var catId = document.getElementById("fCategory").value;
+  var img = document.getElementById("fImage").value.trim();
+  var desc = document.getElementById("fDesc").value.trim();
+
+  PRODUCTS.unshift({
+    id: nextId++,
+    name: name,
+    cat: catId,
+    brand: state.fBrand,
+    price: price,
+    old: old,
+    rating: 5, rc: 0,
+    emoji: catById(catId).emoji,
+    tag: "جديد",
+    date: 999,                               /* عشان يظهر الأول في "الأحدث" */
+    desc: desc || "إعلان جديد من إدارة المتجر - اسأل على واتساب للتفاصيل والمعاينة.",
+    img: img || null
+  });
+
+  /* تفريغ الفورم */
+  document.getElementById("fName").value = "";
+  document.getElementById("fPrice").value = "";
+  document.getElementById("fOldPrice").value = "";
+  document.getElementById("fImage").value = "";
+  document.getElementById("fDesc").value = "";
+
+  showToast("الإعلان نزل على الموقع بنجاح 🎉");
+  renderAll(); renderFlash();
+  goTo("ads");
+});
+
+/* ============================================================
+   البحث اللحظي + الوضع الليلي + المنيو
+============================================================ */
+function onSearch(v, fromMobile){
+  state.search = v;
+  /* مزامنة الحقلين */
+  if(fromMobile) document.getElementById("searchInput").value = v;
+  else document.getElementById("searchInputMob").value = v;
+  renderChips(); renderProducts();
+}
+document.getElementById("searchInput").addEventListener("input", function(){ onSearch(this.value, false); });
+document.getElementById("searchInputMob").addEventListener("input", function(){ onSearch(this.value, true); });
+
+document.getElementById("themeBtn").addEventListener("click", function(){
+  document.body.classList.toggle("light");
+  this.textContent = document.body.classList.contains("light") ? "🌙" : "☀️";
+  renderHero();                              /* تحديث خلفية الهيرو حسب الوضع */
+});
+document.getElementById("menuBtn").addEventListener("click", function(){
+  document.getElementById("mobileMenu").classList.toggle("show");
+});
+document.getElementById("cartBtn").addEventListener("click", openCart);
+
+/* ============================================================
+   روابط واتساب الثابتة + الشريط المتحرك
+============================================================ */
+function setWaLinks(){
+  var hello = waLink("🐼 أهلاً PANDA! عايز أسأل عن منتج");
+  document.getElementById("waHdr").href = hello;
+  document.getElementById("waMenu").href = hello;
+  document.getElementById("fabWa").href = waLink("🐼 أهلاً PANDA! عايز أسأل عن عرض");
+  document.getElementById("bbWa").href = hello;
+  document.getElementById("waContact").href = waLink("🐼 أهلاً PANDA! عايز استفسر");
+  document.getElementById("heroAsk").href = waLink("🐼 عايز أعرف عروض النهاردة");
+  var waFootLinks = document.querySelectorAll(".foot-wa-link");
+  for(var i=0;i<waFootLinks.length;i++) waFootLinks[i].href = waLink("🐼 عايز أطلب");
+}
+function renderTicker(){
+  var items = "🚚 توصيل سريع لكل المحافظات • 💵 الدفع عند الاستلام • 🛡️ ضمان حقيقي واستبدال • 🔊 صبات PANDA ببيز يهز المكان • 📱 كل اكسسوارات الموبايل في مكان واحد • ";
+  var html = "";
+  for(var i=0;i<2;i++) html += "<span>"+items+"</span>";
+  document.getElementById("tickerInner").innerHTML = html;
+}
+function renderFootCats(){
+  var html = "";
+  for(var i=0;i<5;i++){
+    var c = CATEGORIES[i];
+    html += '<li><button onclick="setCategory(\''+c.id+'\');goTo(\'ads\')">'+c.emoji+' '+c.name+'</button></li>';
+  }
+  document.getElementById("footCats").innerHTML = html;
+}
+
+/* ============================================================
+   التشغيل الأول
+============================================================ */
+renderTicker();
+setWaLinks();
+renderHero();
+renderCats();
+renderBrands();
+renderFlash();
+fillFilterSelects();
+renderSortButtons();
+renderChips();
+renderProducts();
+renderReviews();
+fillAdminForm();
+renderFootCats();
+updateCartUI();
+</script>
+</body>
 </html>
